@@ -1,6 +1,6 @@
 import { Router } from "express";
 import recommendationController from "../controllers/recommendationController";
-import wrapRequestHandler from "../wrapRequestHandler";
+import wrapRequestHandler from "../utils/wrapRequestHandler";
 
 const recommendationRouter = Router();
 

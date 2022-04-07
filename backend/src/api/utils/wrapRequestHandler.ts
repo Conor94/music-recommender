@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { ApiRequest } from "./interfaces/ApiRequest";
-import { ApiResponse } from "./interfaces/ApiResponse";
+import { ApiRequest } from "../interfaces/ApiRequest";
+import { ApiResponse } from "../interfaces/ApiResponse";
 
 const hasBody = (req: Request) => {
     return Object.keys(req.body).length !== 0;

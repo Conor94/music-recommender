@@ -1,6 +1,6 @@
 import { Router } from "express";
 import searchController from "../controllers/searchController";
-import wrapRequestHandler from "../wrapRequestHandler";
+import wrapRequestHandler from "../utils/wrapRequestHandler";
 
 const searchRouter = Router();
 
