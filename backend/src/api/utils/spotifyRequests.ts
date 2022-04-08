@@ -1,11 +1,11 @@
 import axios from "axios";
-import { Recommendation } from "../../models/recommendation";
+import { RecommendationCriteria } from "../../models/recommendation";
 import { convertRecommendation } from "./convertRecommendation";
 import { spotifyAccessToken } from "./spotifyAuthorization";
 
 const spotifyBaseUrl = "https://api.spotify.com/v1";
 
-export const getRecommendation = async (recommendation: Recommendation) : Promise<object[]> => {
+export const getRecommendation = async (recommendation: RecommendationCriteria) : Promise<object[]> => {
     const { data } = await axios.get(`${spotifyBaseUrl}/recommendations`, {
         headers: {
             "Authorization": `Bearer ${spotifyAccessToken}`,
@@ -25,4 +25,14 @@ export const getRecommendation = async (recommendation: Recommendation) : Promis
     });
 
     return convertRecommendation(data.tracks);
+}
+
+export const getSpotifyGenres = async () : Promise<string[]> => {
+    const { data } = await axios.get(`${spotifyBaseUrl}/recommendations/available-genre-seeds`, {
+        headers: {
+            "Authorization": `Bearer ${spotifyAccessToken}`,
+        },
+    });
+
+    return data.genres;
 }

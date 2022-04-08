@@ -1,7 +1,7 @@
-import { Recommendation } from "../../models/recommendation";
+import { RecommendationCriteria } from "../../models/recommendation";
 
 export interface RecommendationRequest {
-    body?: Recommendation;
+    body?: RecommendationCriteria;
     params?: any;
     query?: any;
 }
