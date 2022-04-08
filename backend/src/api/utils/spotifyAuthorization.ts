@@ -1,9 +1,9 @@
 import axios from "axios";
 import config from "../../config";
 
-export let accessToken: string = "";
+export let spotifyAccessToken: string = "";
 
-const getSpotifyBearerToken = (renew: boolean) => {
+const getSpotifyAccessToken = (renew: boolean) => {
     axios.post("https://accounts.spotify.com/api/token", null, {
         headers: {
             "Authorization": `Basic ${Buffer.from(`${config.spotifyClientId}:${config.spotifyClientSecret}`).toString("base64")}`,
@@ -13,13 +13,13 @@ const getSpotifyBearerToken = (renew: boolean) => {
             "grant_type": "client_credentials",
         },
     }).then((res) => {
-        accessToken = res.data.access_token;
+        spotifyAccessToken = res.data.access_token;
 
         if (renew) {
             setTimeout(() => {
                 console.log("Spotify access token has expired and will be renewed");
         
-                getSpotifyBearerToken(true);
+                getSpotifyAccessToken(true);
             }, (res.data.expires_in - 30) * 1000); // Renew token 30 seconds before it expires
         }
     }).catch((reason) => {
@@ -27,4 +27,4 @@ const getSpotifyBearerToken = (renew: boolean) => {
     });
 };
 
-export default getSpotifyBearerToken;
+export default getSpotifyAccessToken;

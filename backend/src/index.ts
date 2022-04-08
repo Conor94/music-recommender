@@ -4,11 +4,11 @@ import cors from "cors";
 import config from "./config";
 import router from "./api/router";
 import errorHandler from "./api/errorHandling/errorHandler";
-import getSpotifyBearerToken from "./api/utils/spotifyAuthorization";
+import getSpotifyAccessToken from "./api/utils/spotifyAuthorization";
 
 const app = express();
 
-getSpotifyBearerToken(true);
+getSpotifyAccessToken(true);
 
 // Setup the server
 app.use(cors());

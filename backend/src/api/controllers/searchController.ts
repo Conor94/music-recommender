@@ -5,7 +5,7 @@ const searchController = {
     async getSearch(req: ApiRequest) : Promise<ApiResponse> {
         return {
             body: {
-                message: "Get random search from database or top X searches",
+                message: "Get random search from database or searches between specified dates",
             },
             statusCode: 501
         };
