@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
-export interface RecommendationCriteria {
-    seedGenres: string[];
+export interface Criteria {
+    genres: string[];
     amount: number;
     happiness: number;
     grooviness: number;
@@ -13,11 +13,28 @@ export interface RecommendationCriteria {
     popularity: number;
 }
 
-const recommendationCriteriaSchema = new Schema<RecommendationCriteria>({
-    seedGenres: {
+export interface Track {
+    song: TrackAttribute;
+    artists: TrackAttribute[];
+    album: TrackAttribute;
+}
+
+// Track attributes are songs, artists, and albums
+export interface TrackAttribute {
+    title: string;
+    url: string;
+}
+
+export interface Recommendation {
+    criteria: Criteria;
+    tracks: Track[];
+}
+
+const criteriaSchema = new Schema<Criteria>({
+    genres: {
         type: [String],
         required: true,
-        validate: (seedGenres: string[]) => seedGenres.length > 1,
+        validate: (seedGenres: string[]) => seedGenres.length >= 1,
     },
 
     amount: {
@@ -57,4 +74,45 @@ const recommendationCriteriaSchema = new Schema<RecommendationCriteria>({
     },
 });
 
-export const RecommendationCriteria = mongoose.model("Recommendation", recommendationCriteriaSchema);
+const trackAttributeSchema = new Schema<TrackAttribute>({
+    title: {
+        type: String,
+        required: true,
+    },
+
+    url: {
+        type: String,
+        required: true,
+    },
+});
+
+const trackSchema = new Schema<Track>({
+    song: {
+        type: trackAttributeSchema,
+        required: true,
+    },
+
+    artists: {
+        type: [trackAttributeSchema],
+        required: true,
+    },
+
+    album: {
+        type: trackAttributeSchema,
+        required: true,
+    },
+});
+
+const recommendationSchema = new Schema<Recommendation>({
+    criteria: {
+        type: criteriaSchema,
+        required: true,
+    },
+
+    tracks: {
+        type: [trackSchema],
+        required: true,
+    },
+});
+
+export const Recommendation = mongoose.model("Recommendation", recommendationSchema);

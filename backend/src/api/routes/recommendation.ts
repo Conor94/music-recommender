@@ -6,8 +6,6 @@ const recommendationRouter = Router();
 
 recommendationRouter.post("/", wrapRequestHandler(recommendationController.createSongRecommendation));
 
-recommendationRouter.get("/genres", wrapRequestHandler(recommendationController.getGenres));
-
 recommendationRouter.get("/count", wrapRequestHandler(recommendationController.getTotalRecommendations));
 
 recommendationRouter.get("/:preset", wrapRequestHandler(recommendationController.getRecommendationPreset));

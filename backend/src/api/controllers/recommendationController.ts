@@ -1,9 +1,9 @@
-import { RecommendationCriteria } from "../../models/recommendation";
+import { Criteria, Recommendation } from "../../models/recommendation";
 import ApiError from "../errorHandling/ApiError";
 import { ApiRequest } from "../interfaces/ApiRequest";
 import { ApiResponse } from "../interfaces/ApiResponse";
 import { RecommendationRequest } from "../interfaces/RecommendationRequest";
-import { getRecommendation, getSpotifyGenres } from "../utils/spotifyRequests";
+import { getRecommendation as getRecommendedTracks } from "../utils/spotifyRequests";
 
 const recommendationController = {
     /**
@@ -12,14 +12,14 @@ const recommendationController = {
      * @returns The song recommendations.
      */
     async createSongRecommendation(req: RecommendationRequest) : Promise<ApiResponse> {
-        const criteria: RecommendationCriteria = req.body;
+        const criteria: Criteria = req.body;
         
-        if (!criteria.seedGenres || criteria.seedGenres.length < 1 || !criteria.seedGenres[0]) {
-            throw new ApiError("Minimum number of seedGenres is 1", 400);
+        if (!criteria.genres || criteria.genres.length < 1 || !criteria.genres[0]) {
+            throw new ApiError("Minimum number of genres is 1", 400);
         }
 
-        if (criteria.seedGenres.length > 5) {
-            throw new ApiError("Maximum number of seedGenres is 5", 400);
+        if (criteria.genres.length > 5) {
+            throw new ApiError("Maximum number of genres is 5", 400);
         }
 
         // Make sure every parameter that was passed with the body has a value
@@ -30,33 +30,22 @@ const recommendationController = {
         }
 
         // Get a recommendations using the Spotify API
-        const recommendations = await getRecommendation(criteria);
+        const recommendedTracks = await getRecommendedTracks(criteria);
         
-        if (!(await RecommendationCriteria.create(criteria))) {
+        // Save the recommendation criteria and tracks to the database
+        if (!(await Recommendation.create({
+            criteria,
+            tracks: recommendedTracks,
+        }))) {
             console.log("Failed to save recommendation to the database");
         }
 
         return {
             body: {
-                data: recommendations,
+                data: recommendedTracks,
             },
             statusCode: 200
         };
-    },
-
-    /**
-     * Gets all genres that can be used for song recommendations with the Spotify API.
-     * @returns All genres as an array of strings.
-     */
-    async getGenres() : Promise<ApiResponse> {
-        const genres = await getSpotifyGenres();
-
-        return {
-            body: {
-                data: genres,
-            },
-            statusCode: 200,
-        }
     },
 
     async getRecommendationPreset(req: ApiRequest) : Promise<ApiResponse> {
@@ -73,7 +62,7 @@ const recommendationController = {
      * @returns The total number of recommendations.
      */
     async getTotalRecommendations() : Promise<ApiResponse> {
-        const count = await RecommendationCriteria.count();
+        const count = await Recommendation.count();
 
         return {
             body: {

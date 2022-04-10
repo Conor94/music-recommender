@@ -1,18 +1,20 @@
-export const convertRecommendation = (tracks: any[]) => {
+import { Track } from "../../models/recommendation";
+
+export const convertRecommendation = (tracks: any[]) : Track[] => {
     return tracks.map((track) => {
         return {
-            track: {
-                name: track.name,
+            song: {
+                title: track.name,
                 url: track.external_urls.spotify,
             },
             artists: track.artists.map((artist) => {
                 return {
-                    name: artist.name,
+                    title: artist.name,
                     url: artist.external_urls.spotify,
                 }
             }),
             album: {
-                name: track.album.name,
+                title: track.album.name,
                 url: track.external_urls.spotify,
             },
         }

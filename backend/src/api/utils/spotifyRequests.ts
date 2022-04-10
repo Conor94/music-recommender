@@ -1,18 +1,18 @@
 import axios from "axios";
-import { RecommendationCriteria } from "../../models/recommendation";
+import { Criteria, Track } from "../../models/recommendation";
 import { convertRecommendation } from "./convertRecommendation";
 import { spotifyAccessToken } from "./spotifyAuthorization";
 
 const spotifyBaseUrl = "https://api.spotify.com/v1";
 
-export const getRecommendation = async (recommendation: RecommendationCriteria) : Promise<object[]> => {
+export const getRecommendation = async (recommendation: Criteria) : Promise<Track[]> => {
     const { data } = await axios.get(`${spotifyBaseUrl}/recommendations`, {
         headers: {
             "Authorization": `Bearer ${spotifyAccessToken}`,
         },
         params: {
             limit: recommendation.amount,
-            seed_genres: recommendation.seedGenres.join(","),
+            seed_genres: recommendation.genres.join(","),
             valence: recommendation.happiness,
             target_danceability: recommendation.grooviness, //TODO Make sure target_danceability is the right field
             target_energy: recommendation.energy,
