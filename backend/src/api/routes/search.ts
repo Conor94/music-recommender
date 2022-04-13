@@ -4,6 +4,8 @@ import wrapRequestHandler from "../utils/wrapRequestHandler";
 
 const searchRouter = Router();
 
-searchRouter.get("/", wrapRequestHandler(searchController.getSearch));
+searchRouter.get("/genre", wrapRequestHandler(searchController.getRandomSearchByGenre));
+
+searchRouter.get("/random", wrapRequestHandler(searchController.getRandomSearch));
 
 export default searchRouter;

@@ -32,4 +32,4 @@ flow grants different authorization levels (e.g. some types don't grant access t
 
 Steps for getting an access token using the *client credentials* flow:
 1. Follow [this guide](https://developer.spotify.com/documentation/general/guides/authorization/app-settings/) to register an app and obtain client credentials
-2. Follow this guide to send a POST request to get the access token: https://developer.spotify.com/documentation/general/guides/authorization/client-credentials/
+2. Follow [this guide](https://developer.spotify.com/documentation/general/guides/authorization/client-credentials/) to send a POST request to get the access token
