@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && env-cmd -f ./.env.local node ./build/src/index.js",
+    "start": "node ./build/src/index.js",
     "dev": "npm run build && env-cmd -f ./.env.local npx nodemon ./src/index.ts --watch ./src --ext ts",
     "build": "tsc -b"
   },
