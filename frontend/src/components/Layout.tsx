@@ -12,7 +12,7 @@ const Layout = ({ children }: LayoutProps) => {
             <Box w="100%" h="6rem" backgroundColor="#1db954">
                 <Container maxW="container.lg" h="100%">
                     <Flex justify="center" align="center" h="100%">
-                        <Text fontSize="5xl" fontFamily="Lato" fontWeight={700} color="white" mr={1}>
+                        <Text fontSize="5xl" fontWeight="900" color="white" mr={1} letterSpacing={1}>
                             Music Recommender
                         </Text>
                         <BsMusicNoteBeamed color="white" fontSize="4rem" />
