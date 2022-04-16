@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Container, Flex, Spinner, Text } from "@chakra-ui/react";
 import { BsMusicNoteBeamed } from "react-icons/bs";
 import { getRecommendationCount } from "../api/recommendations";
+import { Link } from "gatsby";
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -20,12 +21,38 @@ const Layout = ({ children }: LayoutProps) => {
     return (
         <>
             <Box w="100%" h="6rem" backgroundColor="#1db954">
-                <Container maxW="container.lg" h="100%">
-                    <Flex justify="center" align="center" h="100%">
-                        <Text fontSize="5xl" fontWeight="900" color="white" mr={4} letterSpacing={1}>
-                            Music Recommender
-                        </Text>
-                        <BsMusicNoteBeamed color="white" fontSize="3rem" />
+                <Container maxW="container.lg" w="100%" h="100%">
+                    <Flex justify="space-between" align="center" w="100%" h="100%">
+                        <Flex>
+                            <Text
+                                fontSize="5xl"
+                                fontWeight="700"
+                                color="white"
+                                mr={4}
+                                letterSpacing={1}
+                                fontFamily="Aclonica"
+                            >
+                                Rhythmood
+                            </Text>
+                            <BsMusicNoteBeamed color="white" fontSize="4rem" />
+                        </Flex>
+                        <Flex columnGap={8}>
+                            <Link to="/">
+                                <Text color="white" fontFamily="Roboto" letterSpacing={1} fontWeight={600}>
+                                    Home
+                                </Text>
+                            </Link>
+                            <Link to="/recommend">
+                                <Text color="white" fontFamily="Roboto" letterSpacing={1} fontWeight={600}>
+                                    Find Music
+                                </Text>
+                            </Link>
+                            <Link to="/random">
+                                <Text color="white" fontFamily="Roboto" letterSpacing={1} fontWeight={600}>
+                                    Random Music
+                                </Text>
+                            </Link>
+                        </Flex>
                     </Flex>
                 </Container>
             </Box>
