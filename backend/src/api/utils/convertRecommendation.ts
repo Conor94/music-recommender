@@ -16,6 +16,7 @@ export const convertRecommendation = (tracks: any[]) : Track[] => {
             }),
             album: {
                 title: track.album.name,
+                imageUrl: track.album.images[0].url ?? undefined,
                 url: track.external_urls.spotify,
             },
         }
