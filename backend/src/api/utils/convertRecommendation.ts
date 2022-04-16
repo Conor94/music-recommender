@@ -5,6 +5,7 @@ export const convertRecommendation = (tracks: any[]) : Track[] => {
         return {
             song: {
                 title: track.name,
+                durationMs: track.duration_ms,
                 url: track.external_urls.spotify,
             },
             artists: track.artists.map((artist) => {

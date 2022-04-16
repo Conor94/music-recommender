@@ -19,9 +19,16 @@ export interface Track {
     album: TrackAttribute;
 }
 
-// Track attributes are songs, artists, and albums
+// Track attributes are artists and albums
 export interface TrackAttribute {
     title: string;
+    url: string;
+}
+
+export interface Song {
+    title: string;
+    /** Duration of the song in milliseconds. */
+    durationMs: number; 
     url: string;
 }
 
@@ -86,9 +93,26 @@ const trackAttributeSchema = new Schema<TrackAttribute>({
     },
 });
 
+const songSchema = new Schema<Song>({
+    title: {
+        type: String,
+        required: true,
+    },
+
+    durationMs: {
+        type: Number,
+        required: true,
+    },
+
+    url: {
+        type: String,
+        required: true,
+    },
+});
+
 const trackSchema = new Schema<Track>({
     song: {
-        type: trackAttributeSchema,
+        type: songSchema,
         required: true,
     },
 
