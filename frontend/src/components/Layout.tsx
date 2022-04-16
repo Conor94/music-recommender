@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Container, Flex, Spinner, Text } from "@chakra-ui/react";
+import { Box, Container, Flex, Spinner, Text, Link as CLink } from "@chakra-ui/react";
 import { BsMusicNoteBeamed } from "react-icons/bs";
 import { getRecommendationCount } from "../api/recommendations";
 import { Link } from "gatsby";
@@ -20,7 +20,7 @@ const Layout = ({ children }: LayoutProps) => {
 
     return (
         <>
-            <Box w="100%" h="6rem" backgroundColor="#1db954">
+            <Box w="100%" h="6rem" backgroundColor="green.500">
                 <Container maxW="container.lg" w="100%" h="100%">
                     <Flex justify="space-between" align="center" w="100%" h="100%">
                         <Flex>
@@ -38,25 +38,25 @@ const Layout = ({ children }: LayoutProps) => {
                         </Flex>
                         <Flex columnGap={8}>
                             <Link to="/">
-                                <Text color="white" fontFamily="Roboto" letterSpacing={1} fontWeight={600}>
-                                    Home
-                                </Text>
+                                <CLink color="white">
+                                    <Text>Home</Text>
+                                </CLink>
                             </Link>
                             <Link to="/recommend">
-                                <Text color="white" fontFamily="Roboto" letterSpacing={1} fontWeight={600}>
-                                    Find Music
-                                </Text>
+                                <CLink color="white">
+                                    <Text>Find Music</Text>
+                                </CLink>
                             </Link>
                             <Link to="/random">
-                                <Text color="white" fontFamily="Roboto" letterSpacing={1} fontWeight={600}>
-                                    Random Music
-                                </Text>
+                                <CLink color="white">
+                                    <Text>Random Music</Text>
+                                </CLink>
                             </Link>
                         </Flex>
                     </Flex>
                 </Container>
             </Box>
-            <Box w="100%" h="3rem" backgroundColor="#E6DDD5" mb={12}>
+            <Box w="100%" h="3rem" backgroundColor="#E6DDD5" mb={8}>
                 <Container maxW="container.lg" h="100%">
                     <Flex justify="center" align="center" h="100%">
                         <Text fontSize="xl" fontWeight="600" color="gray.600" mr={2}>
@@ -72,7 +72,7 @@ const Layout = ({ children }: LayoutProps) => {
                     </Flex>
                 </Container>
             </Box>
-            <Container maxW="container.lg" pb={16}>
+            <Container maxW="container.lg" pb={8}>
                 {children}
             </Container>
         </>
