@@ -21,31 +21,33 @@ const Layout = ({ children }: LayoutProps) => {
         <>
             <Box w="100%" h="6rem" backgroundColor="#1db954">
                 <Container maxW="container.lg" h="100%">
-                    <Flex justify="space-between" align="center" h="100%">
-                        <Flex>
-                            <Text fontSize="5xl" fontWeight="900" color="white" mr={1} letterSpacing={1}>
-                                Music Recommender
-                            </Text>
-                            <BsMusicNoteBeamed color="white" fontSize="3rem" />
-                        </Flex>
-                        <Flex align="center">
-                            {count != undefined ? (
-                                <Text fontSize="5xl" fontWeight="900" color="white">
-                                    {`Total: ${count}`}
-                                </Text>
-                            ) : (
-                                <>
-                                    <Text fontSize="5xl" fontWeight="900" color="white" mr={2}>
-                                        Total:
-                                    </Text>
-                                    <Spinner color="white" />
-                                </>
-                            )}
-                        </Flex>
+                    <Flex justify="center" align="center" h="100%">
+                        <Text fontSize="5xl" fontWeight="900" color="white" mr={4} letterSpacing={1}>
+                            Music Recommender
+                        </Text>
+                        <BsMusicNoteBeamed color="white" fontSize="3rem" />
                     </Flex>
                 </Container>
             </Box>
-            <Container maxW="container.lg">{children}</Container>
+            <Box w="100%" h="3rem" backgroundColor="#E6DDD5" mb={12}>
+                <Container maxW="container.lg" h="100%">
+                    <Flex justify="center" align="center" h="100%">
+                        <Text fontSize="xl" fontWeight="600" color="gray.600" mr={2}>
+                            Total Recommendations made:
+                        </Text>
+                        {count != undefined ? (
+                            <Text fontSize="xl" fontWeight="600" color="gray.600">
+                                {count}
+                            </Text>
+                        ) : (
+                            <Spinner color="white" />
+                        )}
+                    </Flex>
+                </Container>
+            </Box>
+            <Container maxW="container.lg" pb={16}>
+                {children}
+            </Container>
         </>
     );
 };
