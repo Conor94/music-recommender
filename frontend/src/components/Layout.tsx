@@ -10,7 +10,7 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-    const [count, setCount] = useState<number>();
+    const [count, setCount] = useState<number>(0); //0 placeholder
 
     useEffect(() => {
         getRecommendationCount().then((countData) => {
@@ -25,7 +25,7 @@ const Layout = ({ children }: LayoutProps) => {
                 <Container maxW="container.lg" w="100%" h="100%">
                     <Flex justify="space-between" align="center" w="100%" h="100%">
                         <Flex>
-                            <Text className="title" mr={4}>
+                            <Text className="title-text" mr={4}>
                                 Rhythmood
                             </Text>
                             <BsMusicNoteBeamed className="music-Note"/>
@@ -69,10 +69,6 @@ const Layout = ({ children }: LayoutProps) => {
             <Container maxW="container.lg" pb={8} background = "#eff0f4">
                 {children}
             </Container>
-            <body>
-                <br/>
-                <br/>
-            </body>
         </>
 
     );

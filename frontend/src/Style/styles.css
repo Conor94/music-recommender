@@ -6,7 +6,7 @@ body{
     background-color: #999999;
 }
 
-.title{
+.title-text{
     font-size:3em;
     font-weight: 700;
     color: white;
@@ -35,3 +35,4 @@ body{
     font-weight: bold;
     color : #555555;
 }
+

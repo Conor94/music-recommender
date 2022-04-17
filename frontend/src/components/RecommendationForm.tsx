@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { MultiValue, Select } from "chakra-react-select";
 
+//https://www.npmjs.com/package/multiselect-react-dropdown
+import Multiselect from 'multiselect-react-dropdown';
+
 import { getAllGenres } from "../api/genres";
 import {
     Box,
@@ -28,7 +31,7 @@ const RecommendationForm = () => {
     const [genres, setGenres] = useState<String[]>([]);
 
     // form data state
-    const [selectedGenres, setSelectedGenres] = useState<MultiValue<any>>([]);
+    const [selectedGenres, setSelectedGenres] = useState<String[]>([]);
     const [amount, setAmount] = useState<number>(1);
 
     // state for slider bar parameters
@@ -46,11 +49,15 @@ const RecommendationForm = () => {
 
     const toast = useToast();
 
+
+/*
     useEffect(() => {
         getAllGenres().then((genresData) => {
             setGenres(genresData);
         });
-    }, []);
+    }, []);*/
+
+
 
     const handleSubmit = async () => {
         // check for form errors
@@ -61,9 +68,14 @@ const RecommendationForm = () => {
         }
 
         try {
+            //DELETE
+            console.log(selectedGenres, amount, happiness, grooviness, energy, acousticness,
+                speechiness, popularity, tempo, duration,);
+                
             setError("");
             const recommendation = await createRecommendation({
-                genres: selectedGenres.map((genre: any) => genre.value),
+                //genres: selectedGenres.map((genre: any) => genre.value),
+                genres: selectedGenres,
                 amount,
                 happiness,
                 grooviness,
@@ -92,20 +104,37 @@ const RecommendationForm = () => {
                     Choose your preferred genres (1-5):
                 </Text>
                 <Box w="30rem">
-                    <Select
-                        value={selectedGenres}
-                        onChange={(e) => {
-                            setSelectedGenres(e);
-                        }}
-                        placeholder="Search genre name (ex. Rock)"
-                        options={genres?.map((genre) => {
-                            return {
-                                label: genre,
-                                value: genre,
-                            };
-                        })}
-                        isMulti
+
+                <Multiselect
+                    isObject={false}
+                    onRemove={(e) => {
+                        setSelectedGenres(e);
+                    }}
+                    onSelect={(e) => {
+                        setSelectedGenres(e);
+                    }}
+                    //Genres accepted by Spotify
+                    //https://everynoise.com/everynoise1d.cgi?vector=popularity&scope=mainstream%20only
+                    options={[
+                        'Pop',
+                        'Rap',
+                        'Rock',
+                        'EDM',
+                        'Metal',
+                        'Classical',
+                        'Country',
+                        'Reggae',
+                        'K-Pop',
+                        'Soundtrack',
+                        'Disco',
+                        'Emo',
+                        'New Wave'
+                    ]}
+                    placeholder="Select Genre(s)"
+                    selectionLimit={5}
+                    showCheckbox
                     />
+
                     <Flex justify="center" align="center" w="100%" mt={2}>
                         <Text hidden={error.length <= 0} color="red.300" fontWeight={600} fontSize="lg">
                             <WarningIcon mr={2} />
