@@ -21,6 +21,7 @@ import {
 import { createRecommendation } from "../api/recommendations";
 import { isError } from "util";
 import { WarningIcon } from "@chakra-ui/icons";
+import { count } from "console";
 
 const RecommendationForm = () => {
     // state for form values
@@ -87,7 +88,7 @@ const RecommendationForm = () => {
         <Flex direction="column" align="center" rowGap={8}>
             {/* Choose Genres */}
             <Flex direction="column" align="center">
-                <Text fontSize="2xl" fontWeight="bold" color="gray.600" mb={4}>
+                <Text className="prefrence-Label" mb={4}>
                     Choose your preferred genres (1-5):
                 </Text>
                 <Box w="30rem">
@@ -116,8 +117,8 @@ const RecommendationForm = () => {
 
             {/* Choose number of recommendations */}
             <Flex direction="column" align="center">
-                <Text fontSize="2xl" fontWeight="bold" color="gray.600" mb={4}>
-                    Max number of songs (1-100):
+                <Text className="prefrence-Label" mb={4}>
+                    Number of recommendations (1-100):
                 </Text>
                 <NumberInput
                     value={amount}
@@ -138,7 +139,7 @@ const RecommendationForm = () => {
             <Flex>
                 {/* Happiness */}
                 <Flex direction="column" align="center">
-                    <Text fontSize="2xl" fontWeight="bold" color="gray.600" mb={4}>
+                    <Text className="prefrence-Label" mb={4}>
                         Happiness:
                     </Text>
                     <Slider
@@ -150,7 +151,7 @@ const RecommendationForm = () => {
                         onChange={(e) => setHappiness(e)}
                         w="25rem"
                     >
-                        <SliderTrack>
+                        <SliderTrack bg="#b0adab">
                             <SliderFilledTrack />
                         </SliderTrack>
                         <SliderThumb />
@@ -161,7 +162,7 @@ const RecommendationForm = () => {
 
                 {/* Grooviness */}
                 <Flex direction="column" align="center">
-                    <Text fontSize="2xl" fontWeight="bold" color="gray.600" mb={4}>
+                    <Text className="prefrence-Label" mb={4}>
                         Grooviness:
                     </Text>
                     <Slider
@@ -173,7 +174,7 @@ const RecommendationForm = () => {
                         onChange={(e) => setGrooviness(e)}
                         w="25rem"
                     >
-                        <SliderTrack>
+                        <SliderTrack bg="#b0adab">
                             <SliderFilledTrack />
                         </SliderTrack>
                         <SliderThumb />
@@ -184,7 +185,7 @@ const RecommendationForm = () => {
             <Flex>
                 {/* Energy */}
                 <Flex direction="column" align="center">
-                    <Text fontSize="2xl" fontWeight="bold" color="gray.600" mb={4}>
+                    <Text className="prefrence-Label" mb={4}>
                         Energy:
                     </Text>
                     <Slider
@@ -196,7 +197,7 @@ const RecommendationForm = () => {
                         onChange={(e) => setEnergy(e)}
                         w="25rem"
                     >
-                        <SliderTrack>
+                        <SliderTrack bg="#b0adab">
                             <SliderFilledTrack />
                         </SliderTrack>
                         <SliderThumb />
@@ -207,7 +208,7 @@ const RecommendationForm = () => {
 
                 {/* Acousticness */}
                 <Flex direction="column" align="center">
-                    <Text fontSize="2xl" fontWeight="bold" color="gray.600" mb={4}>
+                    <Text className="prefrence-Label" mb={4}>
                         Acousticness:
                     </Text>
                     <Slider
@@ -219,7 +220,7 @@ const RecommendationForm = () => {
                         onChange={(e) => setAcousticness(e)}
                         w="25rem"
                     >
-                        <SliderTrack>
+                        <SliderTrack bg="#b0adab">
                             <SliderFilledTrack />
                         </SliderTrack>
                         <SliderThumb />
@@ -230,7 +231,7 @@ const RecommendationForm = () => {
             <Flex>
                 {/* Speechiness */}
                 <Flex direction="column" align="center">
-                    <Text fontSize="2xl" fontWeight="bold" color="gray.600" mb={4}>
+                    <Text className="prefrence-Label" mb={4}>
                         Speechiness:
                     </Text>
                     <Slider
@@ -242,7 +243,7 @@ const RecommendationForm = () => {
                         onChange={(e) => setSpeechiness(e)}
                         w="25rem"
                     >
-                        <SliderTrack>
+                        <SliderTrack bg="#b0adab">
                             <SliderFilledTrack />
                         </SliderTrack>
                         <SliderThumb />
@@ -253,11 +254,11 @@ const RecommendationForm = () => {
 
                 {/* Popularity */}
                 <Flex direction="column" align="center">
-                    <Text fontSize="2xl" fontWeight="bold" color="gray.600" mb={4}>
+                    <Text className="prefrence-Label" mb={4}>
                         Popularity:
                     </Text>
                     <Slider colorScheme="green" value={popularity} onChange={(e) => setPopularity(e)} w="25rem">
-                        <SliderTrack>
+                        <SliderTrack bg="#b0adab">
                             <SliderFilledTrack />
                         </SliderTrack>
                         <SliderThumb />
@@ -268,7 +269,7 @@ const RecommendationForm = () => {
             <Flex>
                 {/* Tempo */}
                 <Flex direction="column" align="center">
-                    <Text fontSize="2xl" fontWeight="bold" color="gray.600" mb={4}>
+                    <Text className="prefrence-Label" mb={4}>
                         Tempo:
                     </Text>
                     <Slider
@@ -280,7 +281,7 @@ const RecommendationForm = () => {
                         onChange={(e) => setTempo(e)}
                         w="25rem"
                     >
-                        <SliderTrack>
+                        <SliderTrack bg="#b0adab">
                             <SliderFilledTrack />
                         </SliderTrack>
                         <SliderThumb />
@@ -291,10 +292,10 @@ const RecommendationForm = () => {
 
                 {/* Duration */}
                 <Flex direction="column" align="center">
-                    <Text fontSize="2xl" fontWeight="bold" color="gray.600" mb={4}>
+                    <Text className="prefrence-Label" mb={4}>
                         Duration:
                     </Text>
-                    <Slider
+                    <Slider className="sliders"
                         colorScheme="green"
                         value={duration}
                         min={60000}
@@ -303,7 +304,7 @@ const RecommendationForm = () => {
                         onChange={(e) => setDuration(e)}
                         w="25rem"
                     >
-                        <SliderTrack>
+                        <SliderTrack bg="#b0adab">
                             <SliderFilledTrack />
                         </SliderTrack>
                         <SliderThumb />
