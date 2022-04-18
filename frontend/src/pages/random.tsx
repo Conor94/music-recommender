@@ -53,7 +53,7 @@ const RandomPage = () => {
                         Here's one of them:
                     </Text>
                     {recommendations && (
-                        <Flex w="100%" flexWrap="wrap" rowGap={4} columnGap={4} mb={8}>
+                        <Flex w="100%" flexWrap="wrap" rowGap={4} columnGap={4} mb={12}>
                             {recommendations.map((recommendation) => {
                                 return <RecommendationCard recommendation={recommendation} />;
                             })}

@@ -15,12 +15,14 @@ const Layout = ({ children }: LayoutProps) => {
             <Box w="100%" h="6rem" backgroundColor="#444444">
                 <Container maxW="container.lg" w="100%" h="100%">
                     <Flex justify="space-between" align="center" w="100%" h="100%">
-                        <Flex>
-                            <Text className="title" mr={4}>
-                                Rhythmood
-                            </Text>
-                            <BsMusicNoteBeamed className="music-Note" />
-                        </Flex>
+                        <Link to="/">
+                            <Flex>
+                                <Text className="title" mr={4}>
+                                    Rhythmood
+                                </Text>
+                                <BsMusicNoteBeamed className="music-Note" />
+                            </Flex>
+                        </Link>
                         <Flex columnGap={8} className="hot-Bar-Link">
                             <Link to="/">
                                 <CLink>

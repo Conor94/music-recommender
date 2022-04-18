@@ -92,6 +92,12 @@ const RecommendationForm = () => {
         }
     };
 
+    const refreshForm = () => {
+        setError("");
+        setIsLoading(false);
+        setRecommendations([]);
+    };
+
     return (
         <>
             {/* loading screen */}
@@ -163,7 +169,7 @@ const RecommendationForm = () => {
                             <Slider
                                 colorScheme="green"
                                 value={happiness}
-                                min={0}
+                                min={0.01}
                                 max={1}
                                 step={0.01}
                                 onChange={(e) => setHappiness(e)}
@@ -186,7 +192,7 @@ const RecommendationForm = () => {
                             <Slider
                                 colorScheme="green"
                                 value={grooviness}
-                                min={0}
+                                min={0.01}
                                 max={1}
                                 step={0.01}
                                 onChange={(e) => setGrooviness(e)}
@@ -209,7 +215,7 @@ const RecommendationForm = () => {
                             <Slider
                                 colorScheme="green"
                                 value={energy}
-                                min={0}
+                                min={0.01}
                                 max={1}
                                 step={0.01}
                                 onChange={(e) => setEnergy(e)}
@@ -232,7 +238,7 @@ const RecommendationForm = () => {
                             <Slider
                                 colorScheme="green"
                                 value={acousticness}
-                                min={0}
+                                min={0.01}
                                 max={1}
                                 step={0.01}
                                 onChange={(e) => setAcousticness(e)}
@@ -255,7 +261,7 @@ const RecommendationForm = () => {
                             <Slider
                                 colorScheme="green"
                                 value={speechiness}
-                                min={0}
+                                min={0.01}
                                 max={1}
                                 step={0.01}
                                 onChange={(e) => setSpeechiness(e)}
@@ -275,7 +281,13 @@ const RecommendationForm = () => {
                             <Text className="prefrence-Label" mb={4}>
                                 Popularity:
                             </Text>
-                            <Slider colorScheme="green" value={popularity} onChange={(e) => setPopularity(e)} w="25rem">
+                            <Slider
+                                colorScheme="green"
+                                value={popularity}
+                                min={1}
+                                onChange={(e) => setPopularity(e)}
+                                w="25rem"
+                            >
                                 <SliderTrack bg="#b0adab">
                                     <SliderFilledTrack />
                                 </SliderTrack>
@@ -340,7 +352,7 @@ const RecommendationForm = () => {
 
             {/* results screen */}
             {recommendations.length > 0 && !isLoading && (
-                <>
+                <Flex direction="column" align="center">
                     <Text color="gray.700" fontSize="4xl" fontWeight="bold" mb={8}>
                         Recommended songs for you:
                     </Text>
@@ -350,11 +362,11 @@ const RecommendationForm = () => {
                         })}
                     </Flex>
                     <Link>
-                        <Button colorScheme="green" w="16rem" h="4rem" fontSize="2xl">
+                        <Button colorScheme="green" w="16rem" h="4rem" fontSize="2xl" onClick={refreshForm}>
                             Find more songs
                         </Button>
                     </Link>
-                </>
+                </Flex>
             )}
         </>
     );
