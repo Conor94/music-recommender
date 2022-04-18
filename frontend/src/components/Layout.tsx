@@ -3,7 +3,7 @@ import { Box, Container, Flex, Spinner, Text, Link as CLink } from "@chakra-ui/r
 import { BsMusicNoteBeamed } from "react-icons/bs";
 import { getRecommendationCount } from "../api/recommendations";
 import { Link } from "gatsby";
-import "../Style/styles.css"
+import "../Style/styles.css";
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -21,14 +21,14 @@ const Layout = ({ children }: LayoutProps) => {
 
     return (
         <>
-            <Box w="100%" h="6rem" backgroundColor="#444444">
+            <Box w="100%" h="6rem" backgroundColor="#444444" mb={8}>
                 <Container maxW="container.lg" w="100%" h="100%">
                     <Flex justify="space-between" align="center" w="100%" h="100%">
                         <Flex>
                             <Text className="title" mr={4}>
                                 Rhythmood
                             </Text>
-                            <BsMusicNoteBeamed className="music-Note"/>
+                            <BsMusicNoteBeamed className="music-Note" />
                         </Flex>
                         <Flex columnGap={8} className="hot-Bar-Link">
                             <Link to="/">
@@ -50,31 +50,10 @@ const Layout = ({ children }: LayoutProps) => {
                     </Flex>
                 </Container>
             </Box>
-            <Box w="100%" h="3rem" backgroundColor="#E6DDD5" mb={8}>
-                <Container maxW="container.lg" h="100%">
-                    <Flex justify="center" align="center" h="100%">
-                        <Text className="recommendations-made" mr={2}>
-                            Total Recommendations made:
-                        </Text>
-                        {count != undefined ? (
-                            <Text className="recommendations-made">
-                                {count}
-                            </Text>
-                        ) : (
-                            <Spinner color="white" />
-                        )}
-                    </Flex>
-                </Container>
-            </Box>
-            <Container maxW="container.lg" pb={8} background = "#eff0f4">
+            <Container maxW="container.lg" py={12} background="white" borderRadius={8}>
                 {children}
             </Container>
-            <body>
-                <br/>
-                <br/>
-            </body>
         </>
-
     );
 };
 export default Layout;
