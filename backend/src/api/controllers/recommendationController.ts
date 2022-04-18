@@ -1,6 +1,5 @@
 import { Criteria, Recommendation } from "../../models/recommendation";
 import ApiError from "../errorHandling/ApiError";
-import { ApiRequest } from "../interfaces/ApiRequest";
 import { ApiResponse } from "../interfaces/ApiResponse";
 import { RecommendationRequest } from "../interfaces/RecommendationRequest";
 import { getRecommendation as getRecommendedTracks } from "../utils/spotifyRequests";
@@ -45,15 +44,6 @@ const recommendationController = {
                 data: recommendedTracks,
             },
             statusCode: 200
-        };
-    },
-
-    async getRecommendationPreset(req: ApiRequest) : Promise<ApiResponse> {
-        return {
-            body: {
-                message: "Gets a song recommendation using preset values"
-            },
-            statusCode: 501
         };
     },
 
