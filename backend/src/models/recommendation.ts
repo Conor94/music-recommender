@@ -14,13 +14,25 @@ export interface Criteria {
 }
 
 export interface Track {
-    song: TrackAttribute;
-    artists: TrackAttribute[];
-    album: TrackAttribute;
+    song: Song;
+    artists: Artist[];
+    album: Album;
 }
 
-// Track attributes are songs, artists, and albums
-export interface TrackAttribute {
+export interface Song {
+    title: string;
+    /** Duration of the song in milliseconds. */
+    durationMs: number; 
+    url: string;
+}
+
+export interface Album {
+    title: string;
+    imageUrl: string;
+    url: string;
+}
+
+export interface Artist {
     title: string;
     url: string;
 }
@@ -74,7 +86,41 @@ const criteriaSchema = new Schema<Criteria>({
     },
 });
 
-const trackAttributeSchema = new Schema<TrackAttribute>({
+const songSchema = new Schema<Song>({
+    title: {
+        type: String,
+        required: true,
+    },
+
+    durationMs: {
+        type: Number,
+        required: true,
+    },
+
+    url: {
+        type: String,
+        required: true,
+    },
+});
+
+const albumSchema = new Schema<Album>({
+    title: {
+        type: String,
+        required: true,
+    },
+
+    imageUrl: {
+        type: String,
+        required: false,
+    },
+
+    url: {
+        type: String,
+        required: true,
+    }
+});
+
+const artistSchema = new Schema<Artist>({
     title: {
         type: String,
         required: true,
@@ -88,17 +134,17 @@ const trackAttributeSchema = new Schema<TrackAttribute>({
 
 const trackSchema = new Schema<Track>({
     song: {
-        type: trackAttributeSchema,
+        type: songSchema,
         required: true,
     },
 
     artists: {
-        type: [trackAttributeSchema],
+        type: [artistSchema],
         required: true,
     },
 
     album: {
-        type: trackAttributeSchema,
+        type: albumSchema,
         required: true,
     },
 });
