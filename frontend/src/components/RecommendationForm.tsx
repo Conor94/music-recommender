@@ -18,11 +18,12 @@ import {
     Button,
     useToast,
     Spinner,
+    Link,
 } from "@chakra-ui/react";
 import { createRecommendation } from "../api/recommendations";
-import { isError } from "util";
 import { WarningIcon } from "@chakra-ui/icons";
-import { count } from "console";
+import Recommendation from "../interfaces/recommendation";
+import RecommendationCard from "./RecommendationCard";
 
 const RecommendationForm = () => {
     // state for form values
@@ -45,7 +46,7 @@ const RecommendationForm = () => {
     // form states
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const [recommendations, setRecommendations] = useState<any>([]);
+    const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
 
     const toast = useToast();
 
@@ -338,6 +339,23 @@ const RecommendationForm = () => {
             )}
 
             {/* results screen */}
+            {recommendations.length > 0 && !isLoading && (
+                <>
+                    <Text color="gray.700" fontSize="4xl" fontWeight="bold" mb={8}>
+                        Recommended songs for you:
+                    </Text>
+                    <Flex w="100%" flexWrap="wrap" rowGap={4} columnGap={4} mb={8}>
+                        {recommendations.map((recommendation) => {
+                            return <RecommendationCard recommendation={recommendation} />;
+                        })}
+                    </Flex>
+                    <Link>
+                        <Button colorScheme="green" w="16rem" h="4rem" fontSize="2xl">
+                            Find more songs
+                        </Button>
+                    </Link>
+                </>
+            )}
         </>
     );
 };

@@ -21,7 +21,7 @@ const Layout = ({ children }: LayoutProps) => {
 
     return (
         <>
-            <Box w="100%" h="6rem" backgroundColor="#444444" mb={8}>
+            <Box w="100%" h="6rem" backgroundColor="#444444">
                 <Container maxW="container.lg" w="100%" h="100%">
                     <Flex justify="space-between" align="center" w="100%" h="100%">
                         <Flex>
