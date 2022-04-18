@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Spinner, Text, useToast } from "@chakra-ui/react";
 import { Link } from "gatsby";
 import * as React from "react";
 import { useEffect, useState } from "react";
@@ -12,14 +12,25 @@ const RandomPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [recommendations, setRecommendations] = useState<Recommendation[]>();
 
+    const toast = useToast();
+
     useEffect(() => {
-        getRecommendationCount().then((countData) => {
-            setCount(countData);
-            getRandomRecommendation().then((savedRecommendations: SavedRecommendations[]) => {
-                setRecommendations(savedRecommendations[0].tracks);
-                setIsLoading(false);
+        try {
+            getRecommendationCount().then((countData) => {
+                setCount(countData);
+                getRandomRecommendation().then((savedRecommendations: SavedRecommendations[]) => {
+                    setRecommendations(savedRecommendations[0].tracks);
+                    setIsLoading(false);
+                });
             });
-        });
+        } catch (e) {
+            setIsLoading(false);
+            toast({
+                description: "Please try again later.",
+                title: "Something went wrong",
+                status: "error",
+            });
+        }
     }, []);
 
     const getNewRecommendation = async () => {
