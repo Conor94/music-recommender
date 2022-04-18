@@ -23,3 +23,8 @@ export const createRecommendation = async (body: RecommendationRequestData) => {
     const { data: axiosData } = await axios.post(`${apiUrl}/recommendation`, body);
     return axiosData.data;
 };
+
+export const getRandomRecommendation = async () => {
+    const { data: axiosData } = await axios.get(`${apiUrl}/search/random`);
+    return axiosData.data;
+};

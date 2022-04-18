@@ -10,15 +10,6 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-    const [count, setCount] = useState<number>();
-
-    useEffect(() => {
-        getRecommendationCount().then((countData) => {
-            setCount(countData);
-            console.log(countData);
-        });
-    }, []);
-
     return (
         <>
             <Box w="100%" h="6rem" backgroundColor="#444444">

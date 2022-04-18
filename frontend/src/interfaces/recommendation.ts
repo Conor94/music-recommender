@@ -20,3 +20,7 @@ export interface Song {
     durationMs: number;
     url: string;
 }
+
+export interface SavedRecommendations {
+    tracks: Recommendation[];
+}
