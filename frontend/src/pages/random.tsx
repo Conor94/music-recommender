@@ -19,8 +19,15 @@ const RandomPage = () => {
             getRecommendationCount().then((countData) => {
                 setCount(countData);
                 getRandomRecommendation().then((savedRecommendations: SavedRecommendations[]) => {
-                    setRecommendations(savedRecommendations[0].tracks);
+                    if (savedRecommendations.length > 0) {
+                        setRecommendations(savedRecommendations[0].tracks);
+                    }
                     setIsLoading(false);
+                    toast({
+                        description: "Could not get recommendation",
+                        title: "Something went wrong",
+                        status: "error",
+                    });
                 });
             });
         } catch (e) {
@@ -35,7 +42,14 @@ const RandomPage = () => {
 
     const getNewRecommendation = async () => {
         const savedRecommendations: SavedRecommendations[] = await getRandomRecommendation();
-        setRecommendations(savedRecommendations[0].tracks);
+        if (savedRecommendations.length > 0) {
+            setRecommendations(savedRecommendations[0].tracks);
+        }
+        toast({
+            description: "Could not get recommendation",
+            title: "Something went wrong",
+            status: "error",
+        });
     };
 
     return (
