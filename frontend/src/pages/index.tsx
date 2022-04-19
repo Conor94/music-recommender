@@ -5,6 +5,7 @@ import { BsMusicNoteBeamed } from "react-icons/bs";
 
 // markup
 const IndexPage = () => {
+    console.log(process.env.apiUrl);
     return (
         <Flex direction="column" align="center">
             <Text fontSize="8rem" mt={4} mb={8}>
