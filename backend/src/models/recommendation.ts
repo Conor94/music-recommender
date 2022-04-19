@@ -1,3 +1,8 @@
+// FILE        : backend\src\models\recommendation.ts
+// PROJECT     : Music Recommender
+// AUTHORS     : Conor Barr, Joel Malleck, Mike Hammond
+// DESCRIPTION : Defines the schema and model for the Recommendation entity.
+
 import mongoose, { Schema } from "mongoose";
 
 export interface Criteria {

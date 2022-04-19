@@ -62,7 +62,7 @@ const RandomPage = () => {
                     <Spinner size="xl" />
                 </Flex>
             ) : (
-                <Flex direction="column" align="center">
+                <Flex direction="column" align="center" textAlign="center">
                     <Text color="gray.700" fontSize="4xl" fontWeight={500}>
                         Rhythmood has made <strong>{count}</strong> recommendations.
                     </Text>

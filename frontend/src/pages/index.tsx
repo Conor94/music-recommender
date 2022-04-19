@@ -6,10 +6,9 @@ import Layout from "../components/Layout";
 
 // markup
 const IndexPage = () => {
-    console.log(process.env.apiUrl);
     return (
         <Layout>
-            <Flex direction="column" align="center">
+            <Flex direction="column" align="center" textAlign="center">
                 <Text fontSize="8rem" mt={4} mb={8}>
                     <BsMusicNoteBeamed />
                 </Text>
