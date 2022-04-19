@@ -6,7 +6,7 @@ import { BsMusicNoteBeamed } from "react-icons/bs";
 // markup
 const IndexPage = () => {
     return (
-        <Flex direction="column" align="center">
+        <Flex direction="column" align="center" textAlign="center">
             <Text fontSize="8rem" mt={4} mb={8}>
                 <BsMusicNoteBeamed />
             </Text>

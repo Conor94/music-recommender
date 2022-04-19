@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Container, Flex, Spinner, Text, Link as CLink } from "@chakra-ui/react";
+import { Box, Container, Flex, Spinner, Text, Link as CLink, useMediaQuery } from "@chakra-ui/react";
 import { BsMusicNoteBeamed } from "react-icons/bs";
 import { getRecommendationCount } from "../api/recommendations";
 import { Link } from "gatsby";
@@ -10,6 +10,7 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
+    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
     return (
         <>
             <Box w="100%" h="6rem" backgroundColor="#444444">
@@ -17,7 +18,7 @@ const Layout = ({ children }: LayoutProps) => {
                     <Flex justify="space-between" align="center" w="100%" h="100%">
                         <Link to="/">
                             <Flex>
-                                <Text className="title" mr={4}>
+                                <Text className="title" mr={4} hidden={isSmallerThan768}>
                                     Rhythmood
                                 </Text>
                                 <BsMusicNoteBeamed className="music-Note" />

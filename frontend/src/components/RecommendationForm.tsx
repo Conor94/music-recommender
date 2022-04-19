@@ -19,6 +19,7 @@ import {
     useToast,
     Spinner,
     Link,
+    useMediaQuery,
 } from "@chakra-ui/react";
 import { createRecommendation } from "../api/recommendations";
 import { WarningIcon } from "@chakra-ui/icons";
@@ -48,7 +49,9 @@ const RecommendationForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
 
+    // chakra hooks
     const toast = useToast();
+    const [isSmallerThan900] = useMediaQuery("(max-width: 900px)");
 
     useEffect(() => {
         getAllGenres().then((genresData) => {
@@ -109,9 +112,9 @@ const RecommendationForm = () => {
 
             {/* form screen */}
             {recommendations.length <= 0 && !isLoading && (
-                <Flex direction="column" align="center" rowGap={8}>
+                <Flex direction="column" align="center" rowGap={isSmallerThan900 ? 0 : 8} flexWrap="wrap">
                     {/* Choose Genres */}
-                    <Flex direction="column" align="center">
+                    <Flex direction="column" align="center" mb={isSmallerThan900 ? 8 : 0}>
                         <Text className="prefrence-Label" mb={4}>
                             Choose your preferred genres (1-5):
                         </Text>
@@ -140,7 +143,7 @@ const RecommendationForm = () => {
                     </Flex>
 
                     {/* Choose number of recommendations */}
-                    <Flex direction="column" align="center">
+                    <Flex direction="column" align="center" mb={isSmallerThan900 ? 8 : 0}>
                         <Text className="prefrence-Label" mb={4}>
                             Number of recommendations (1-100):
                         </Text>
@@ -160,9 +163,9 @@ const RecommendationForm = () => {
                         </NumberInput>
                     </Flex>
 
-                    <Flex>
+                    <Flex direction={isSmallerThan900 ? "column" : "row"}>
                         {/* Happiness */}
-                        <Flex direction="column" align="center">
+                        <Flex direction="column" align="center" mb={isSmallerThan900 ? 4 : 0}>
                             <Text className="prefrence-Label" mb={4}>
                                 Happiness:
                             </Text>
@@ -185,7 +188,7 @@ const RecommendationForm = () => {
                         <Box w={8} />
 
                         {/* Grooviness */}
-                        <Flex direction="column" align="center">
+                        <Flex direction="column" align="center" mb={isSmallerThan900 ? 4 : 0}>
                             <Text className="prefrence-Label" mb={4}>
                                 Grooviness:
                             </Text>
@@ -206,9 +209,9 @@ const RecommendationForm = () => {
                         </Flex>
                     </Flex>
 
-                    <Flex>
+                    <Flex direction={isSmallerThan900 ? "column" : "row"}>
                         {/* Energy */}
-                        <Flex direction="column" align="center">
+                        <Flex direction="column" align="center" mb={isSmallerThan900 ? 4 : 0}>
                             <Text className="prefrence-Label" mb={4}>
                                 Energy:
                             </Text>
@@ -231,7 +234,7 @@ const RecommendationForm = () => {
                         <Box w={8} />
 
                         {/* Acousticness */}
-                        <Flex direction="column" align="center">
+                        <Flex direction="column" align="center" mb={isSmallerThan900 ? 4 : 0}>
                             <Text className="prefrence-Label" mb={4}>
                                 Acousticness:
                             </Text>
@@ -252,9 +255,9 @@ const RecommendationForm = () => {
                         </Flex>
                     </Flex>
 
-                    <Flex>
+                    <Flex direction={isSmallerThan900 ? "column" : "row"}>
                         {/* Speechiness */}
-                        <Flex direction="column" align="center">
+                        <Flex direction="column" align="center" mb={isSmallerThan900 ? 4 : 0}>
                             <Text className="prefrence-Label" mb={4}>
                                 Speechiness:
                             </Text>
@@ -277,7 +280,7 @@ const RecommendationForm = () => {
                         <Box w={8} />
 
                         {/* Popularity */}
-                        <Flex direction="column" align="center">
+                        <Flex direction="column" align="center" mb={isSmallerThan900 ? 4 : 0}>
                             <Text className="prefrence-Label" mb={4}>
                                 Popularity:
                             </Text>
@@ -296,9 +299,9 @@ const RecommendationForm = () => {
                         </Flex>
                     </Flex>
 
-                    <Flex>
+                    <Flex direction={isSmallerThan900 ? "column" : "row"}>
                         {/* Tempo */}
-                        <Flex direction="column" align="center">
+                        <Flex direction="column" align="center" mb={isSmallerThan900 ? 4 : 0}>
                             <Text className="prefrence-Label" mb={4}>
                                 Tempo:
                             </Text>
@@ -321,7 +324,7 @@ const RecommendationForm = () => {
                         <Box w={8} />
 
                         {/* Duration */}
-                        <Flex direction="column" align="center">
+                        <Flex direction="column" align="center" mb={isSmallerThan900 ? 4 : 0}>
                             <Text className="prefrence-Label" mb={4}>
                                 Duration:
                             </Text>
