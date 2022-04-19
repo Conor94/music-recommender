@@ -1,1 +1,1 @@
-export const apiUrl = process.env.apiUrl ? process.env.apiUrl : "http://localhost:3000/api";
+export const apiUrl = "https://music-recommender-backend-kihpt.ondigitalocean.app/api";
