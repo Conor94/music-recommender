@@ -1,8 +1,10 @@
-/*
-    Defines an error handler for the API. It's purpose is to return a 500 Internal Server Error
-    status code when an unknown error occurs with the API. An unknown error is considered an
-    error that is not of type ApiError.
-*/
+// FILE        : backend\src\api\errorHandling\recommendationController.ts
+// PROJECT     : Music Recommender
+// AUTHORS     : Conor Barr, Joel Malleck, Mike Hammond
+// DESCRIPTION : 
+//  Defines an error handler for the API. It's purpose is to return a 500 Internal Server Error
+//  status code when an unknown error occurs with the API. An unknown error is considered an
+//  error that is not of type ApiError.
 
 import { Request, Response } from "express";
 import ApiError from "./ApiError";

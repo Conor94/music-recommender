@@ -7,9 +7,12 @@ interface RecommendationCardProps {
 }
 
 const RecommendationCard = ({ recommendation }: RecommendationCardProps) => {
-    console.log(recommendation);
     return (
-        <Box w="48%" p={4} boxShadow="rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px">
+        <Box
+            w={["100%", "100%", "48%"]}
+            p={4}
+            boxShadow="rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px"
+        >
             <Flex w="100%" h="100%" columnGap={8}>
                 <Link href={recommendation.album.url} target="_blank">
                     <Image height="10rem" width="10rem" src={recommendation.album.imageUrl} />

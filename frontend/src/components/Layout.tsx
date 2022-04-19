@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Container, Flex, Text, Link as CLink } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Box, Container, Flex, Spinner, Text, Link as CLink, useMediaQuery } from "@chakra-ui/react";
 import { BsMusicNoteBeamed } from "react-icons/bs";
 import { Link } from "gatsby";
 import "@fontsource/aclonica";
@@ -9,6 +9,7 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
+    const [isSmallerThan768] = useMediaQuery("(max-width: 768px)");
     return (
         <>
             <Box background="#444" h="6rem" w="100%">
@@ -16,14 +17,7 @@ const Layout = ({ children }: LayoutProps) => {
                     <Flex justify="space-between" align="center" w="100%" h="100%">
                         <Link to="/">
                             <Flex>
-                                <Text
-                                    color="white"
-                                    fontFamily="Aclonica"
-                                    fontWeight="700"
-                                    letterSpacing={1}
-                                    fontSize="5xl"
-                                    mr={4}
-                                >
+                                <Text className="title" mr={4} hidden={isSmallerThan768}>
                                     Rhythmood
                                 </Text>
                                 <Text fontSize="7xl">

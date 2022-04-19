@@ -1,3 +1,10 @@
+// FILE        : backend\src\api\utils\genres.ts
+// PROJECT     : Music Recommender
+// AUTHORS     : Conor Barr, Joel Malleck, Mike Hammond
+// DESCRIPTION :
+//  This file has a utility function for converting recommendations from the Spotify
+//  API into the format used by this app.
+
 import { Track } from "../../models/recommendation";
 
 export const convertRecommendation = (tracks: any[]) : Track[] => {
