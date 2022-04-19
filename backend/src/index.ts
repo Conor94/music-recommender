@@ -1,3 +1,8 @@
+// FILE        : backend\src\index.ts
+// PROJECT     : Music Recommender
+// AUTHORS     : Conor Barr, Joel Malleck, Mike Hammond
+// DESCRIPTION : Performs setup for the backend API server and starts the server.
+
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
