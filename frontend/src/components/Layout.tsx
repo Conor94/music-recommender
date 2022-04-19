@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Box, Container, Flex, Spinner, Text, Link as CLink } from "@chakra-ui/react";
+import React from "react";
+import { Box, Container, Flex, Text, Link as CLink } from "@chakra-ui/react";
 import { BsMusicNoteBeamed } from "react-icons/bs";
-import { getRecommendationCount } from "../api/recommendations";
 import { Link } from "gatsby";
-import "../Style/styles.css";
+import "@fontsource/aclonica";
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -12,18 +11,27 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
     return (
         <>
-            <Box w="100%" h="6rem" backgroundColor="#444444">
+            <Box background="#444" h="6rem" w="100%">
                 <Container maxW="container.lg" w="100%" h="100%">
                     <Flex justify="space-between" align="center" w="100%" h="100%">
                         <Link to="/">
                             <Flex>
-                                <Text className="title" mr={4}>
+                                <Text
+                                    color="white"
+                                    fontFamily="Aclonica"
+                                    fontWeight="700"
+                                    letterSpacing={1}
+                                    fontSize="5xl"
+                                    mr={4}
+                                >
                                     Rhythmood
                                 </Text>
-                                <BsMusicNoteBeamed className="music-Note" />
+                                <Text fontSize="7xl">
+                                    <BsMusicNoteBeamed color="#1db954" />
+                                </Text>
                             </Flex>
                         </Link>
-                        <Flex columnGap={8} className="hot-Bar-Link">
+                        <Flex columnGap={8} color="white">
                             <Link to="/">
                                 <CLink>
                                     <Text>Home</Text>
@@ -43,7 +51,7 @@ const Layout = ({ children }: LayoutProps) => {
                     </Flex>
                 </Container>
             </Box>
-            <Container maxW="container.lg" py={12} background="white" borderRadius={8}>
+            <Container maxW="container.lg" py={12} backgroundColor="white" borderRadius={8}>
                 {children}
             </Container>
         </>

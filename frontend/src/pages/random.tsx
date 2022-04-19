@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { getRandomRecommendation, getRecommendationCount } from "../api/recommendations";
+import Layout from "../components/Layout";
 import RecommendationCard from "../components/RecommendationCard";
 import Recommendation, { SavedRecommendations } from "../interfaces/recommendation";
 
@@ -55,7 +56,7 @@ const RandomPage = () => {
     };
 
     return (
-        <>
+        <Layout>
             {isLoading ? (
                 <Flex py={16} justify="center">
                     <Spinner size="xl" />
@@ -80,7 +81,7 @@ const RandomPage = () => {
                     </Button>
                 </Flex>
             )}
-        </>
+        </Layout>
     );
 };
 
