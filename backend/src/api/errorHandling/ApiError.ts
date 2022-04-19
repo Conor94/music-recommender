@@ -1,8 +1,10 @@
-/*
-    Extends the built-in Error class to add fields for REST APIs. All controllers
-    should throw this error instead of the built-in Error class so that the error
-    is properly handled by the error handler.
-*/
+// FILE        : backend\src\api\errorHandling\ApiError.ts
+// PROJECT     : Music Recommender
+// AUTHORS     : Conor Barr, Joel Malleck, Mike Hammond
+// DESCRIPTION : 
+//  Extends the built-in Error class to add fields for REST APIs. All controllers
+//  should throw this error instead of the built-in Error class so that the error
+//  is properly handled by the error handler.
 
 class ApiError extends Error {
     public statusCode: number;

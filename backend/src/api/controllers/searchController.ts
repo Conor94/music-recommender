@@ -1,3 +1,8 @@
+// FILE        : backend\src\api\controllers\searchController.ts
+// PROJECT     : Music Recommender
+// AUTHORS     : Conor Barr, Joel Malleck, Mike Hammond
+// DESCRIPTION : Controller for the random search endpoint.
+
 import { Recommendation } from "../../models/recommendation";
 import ApiError from "../errorHandling/ApiError";
 import { ApiRequest } from "../interfaces/ApiRequest";

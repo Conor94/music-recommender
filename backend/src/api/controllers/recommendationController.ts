@@ -1,3 +1,8 @@
+// FILE        : backend\src\api\controllers\recommendationController.ts
+// PROJECT     : Music Recommender
+// AUTHORS     : Conor Barr, Joel Malleck, Mike Hammond
+// DESCRIPTION : Controller for the recommendations endpoint.
+
 import { Criteria, Recommendation } from "../../models/recommendation";
 import ApiError from "../errorHandling/ApiError";
 import { ApiResponse } from "../interfaces/ApiResponse";

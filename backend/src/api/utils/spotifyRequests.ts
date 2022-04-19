@@ -1,3 +1,8 @@
+// FILE        : backend\src\api\utils\genres.ts
+// PROJECT     : Music Recommender
+// AUTHORS     : Conor Barr, Joel Malleck, Mike Hammond
+// DESCRIPTION : This file has functions for making requests to the Spotify API.
+
 import axios from "axios";
 import { Criteria, Track } from "../../models/recommendation";
 import { convertRecommendation } from "./convertRecommendation";
@@ -14,7 +19,7 @@ export const getRecommendation = async (recommendation: Criteria) : Promise<Trac
             limit: recommendation.amount,
             seed_genres: recommendation.genres.join(","),
             valence: recommendation.happiness,
-            target_danceability: recommendation.grooviness, //TODO Make sure target_danceability is the right field
+            target_danceability: recommendation.grooviness,
             target_energy: recommendation.energy,
             target_acousticness: recommendation.acousticness,
             target_duration_ms: recommendation.duration,

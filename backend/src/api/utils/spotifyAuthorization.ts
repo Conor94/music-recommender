@@ -1,3 +1,8 @@
+// FILE        : backend\src\api\utils\genres.ts
+// PROJECT     : Music Recommender
+// AUTHORS     : Conor Barr, Joel Malleck, Mike Hammond
+// DESCRIPTION : This file has a function that gets a Spotify access token and renews it before it expires.
+
 import axios from "axios";
 import config from "../../config";
 
